@@ -14,9 +14,9 @@ template<typename T>
     T value;                    // communication: value being passed down/up the tree
     Binsertsort *less;
     Binsertsort *great;
-	T pivot;
-	_Event Break{};
-	_Event init{};
+	T pivot;		//compare with value
+	//_Event Break{};
+	//_Event init{};
     void main(){
 	
 	if(value == Sentinel){
@@ -44,7 +44,7 @@ template<typename T>
         		suspend();
 		}
 	
-		
+		//here for retrieve	
 		less->sort(Sentinel);
 		great->sort(Sentinel);
 		suspend();
@@ -84,7 +84,7 @@ template<typename T>
         return value;
     }
 };
-
+//copied from example code
 
 bool convert( int &val, char *buffer ) {		// convert C string to integer
     std::stringstream ss( buffer );			// connect stream and buffer
@@ -105,28 +105,31 @@ void usage( char *argv[] ) {
 } // usage
 
 void uMain::main() {
-    int size = sizeDeflt, code = codeDeflt;		// default value
+//    int size = sizeDeflt, code = codeDeflt;		// default value
     istream *infile = &cin;				// default value
     ostream *outfile = &cout;				// default value
-
+//	void size;
+//	void code;
     switch ( argc ) {
-      case 5:
-	try {
-	    outfile = new ofstream( argv[4] );
-	} catch( uFile::Failure ) {			// open failed ?
-	    cerr << "Error! Could not open output file \"" << argv[4] << "\"" << endl;
-	    usage( argv );
-	} // try
-        // FALL THROUGH
-      case 4:
-	try {
-	    infile = new ifstream( argv[3] );
-	} catch( uFile::Failure ) {
-	    cerr << "Error! Could not open input file \"" << argv[3] << "\"" << endl;
-	    usage( argv );
-	} // try
-        // FALL THROUGH
       case 3:
+	try {
+	    outfile = new ofstream( argv[2] );
+	} catch( uFile::Failure ) {			// open failed ?
+	    cerr << "Error! Could not open output file \"" << argv[2] << "\"" << endl;
+	    usage( argv );
+	} // try
+        // FALL THROUGH
+      case 2:
+//	cout<<"here"<<endl;
+	try {
+	    infile = new ifstream( argv[1] );
+	} catch( uFile::Failure ) {
+	    cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
+	    usage( argv );
+	} // try
+	break;
+        // FALL THROUGH
+      /*case 3:
         if ( ! convert( code, argv[2] ) || code < 0 ) {	// invalid integer ?
 	    usage( argv );
 	} // if
@@ -137,16 +140,26 @@ void uMain::main() {
 	} // if
         // FALL THROUGH
       case 1:						// all defaults
-        break;
-      default:						// wrong number of options
-	usage( argv );
+        break;*/
+      default:	
+	cerr << "Usage: ./binsertsort input [output]" << endl;					// wrong number of options
+	exit(-1);
+	//usage( argv );
     } // switch
 
     //*infile >> noskipws;				// turn off white space skipping during input
 
    
 	int number;
+	while(true){
 	*infile >> number;	
+	if (!*infile) {
+            break;
+        }
+	if(number == 0){
+		*outfile << "blank line from list of length 0 (not actually printed)";
+	}
+
 	TYPE value;
 	int i = 0;
 	Binsertsort<TYPE> start(SENTINEL);
@@ -154,17 +167,30 @@ void uMain::main() {
 		
 		
 		*infile >> value;
+		if (!*infile) {
+            		cerr<<"not enough input"<<endl;
+        	}
+		*outfile << value;
+		if(i<(number - 1))*outfile << " ";
 		start.sort(value);
 		i++;
 	}
+	*outfile<<endl;
 	start.sort(SENTINEL);
 	i = 0;
+	 if(number == 0){
+                *outfile << "blank line from list of length 0 (not actually printed)";
+        }
 	while(i < number){
 		TYPE v = start.retrieve();
-		*outfile << v <<endl;
+		*outfile << v;
+		if(i<(number - 1))*outfile << " ";
 		i++;
 	}
-
+	*outfile<<endl;
+	*outfile<<endl;
+	
+	}
     if ( infile != &cin ) delete infile;		// close file, do not delete cin!
     if ( outfile != &cout ) delete outfile;		// close file, do not delete cout!
 } // main
