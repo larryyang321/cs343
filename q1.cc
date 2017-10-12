@@ -116,7 +116,7 @@ void uMain::main() {
 	    outfile = new ofstream( argv[2] );
 	} catch( uFile::Failure ) {			// open failed ?
 	    cerr << "Error! Could not open output file \"" << argv[2] << "\"" << endl;
-	    usage( argv );
+	    exit(-1);
 	} // try
         // FALL THROUGH
       case 2:
@@ -125,7 +125,7 @@ void uMain::main() {
 	    infile = new ifstream( argv[1] );
 	} catch( uFile::Failure ) {
 	    cerr << "Error! Could not open input file \"" << argv[1] << "\"" << endl;
-	    usage( argv );
+	    exit(-1);
 	} // try
 	break;
         // FALL THROUGH
@@ -142,7 +142,7 @@ void uMain::main() {
       case 1:						// all defaults
         break;*/
       default:	
-	cerr << "Usage: ./binsertsort input [output]" << endl;					// wrong number of options
+	cerr << "Usage: "<<argv[0]<<" unsorted-file [ sorted-file ]" << endl;					// wrong number of options
 	exit(-1);
 	//usage( argv );
     } // switch
