@@ -1,0 +1,49 @@
+questuon3:
+a)
+for i in {1..10}; do ./q3uni 10000000; done
+
+
+
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+shared:20000000
+
+
+for i in {1..10}; do ./q3mult 10000000; done
+
+
+
+shared:10749602
+shared:11200939
+shared:11209567
+shared:10099835
+shared:10426809
+shared:12347447
+shared:10507617
+shared:11370544
+shared:10181155
+shared:11910009
+
+b)
+	no, since the order of execution instances is not guaranteed.
+c) 
+	the largest value is 20000000 if all thread finished completely and store register value before any other thread load register. that will guarantee that all increment is finished.
+	the smallest value is 2 in following scenario
+	thread a and thread b
+	a load 0 in register and stop
+	b finished 10000000 -1 iteration and left one uncomplete,
+	a saved 0+1 = 1 in ram then stop
+	b load from ram which loaded 1 into register
+	a finished iteration and exit
+	b finished itearation and save the result (1+1)=2 into ram
+	
+d)
+	multicore's value is almost as half as unicore;
+	that means multicore almost run simultaneously but not absolutly.

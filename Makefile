@@ -1,4 +1,4 @@
-#/TYPE:= SampleType
+#TYPE:= SampleType
 #SENTINEL:=SampleType(-1,-1)
 TYPE:=int
 SENTINEL:=-1

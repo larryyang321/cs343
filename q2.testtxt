@@ -1,0 +1,97 @@
+q2 test file
+
+first : unvalid input
+
+./cardgame 5 2 100 0(seed unvalid)
+./cardgame 5 2 0 100(card unvalid)
+./cardgame 5 1 100 100(player unvalid)
+./cardgame -1 1 100 100(game unvalid)
+all print out
+Usage: ./cardgame [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+
+second: zero game
+./cardgame 0
+ finished without any warning
+
+third: format
+./cardgame 5 6 140 9
+
+
+Players: 6    Cards: 140
+P0	P1	P2	P3	P4	P5
+3:122>	6:125<	2:131<X	7:133<X
+5:112>	5:117<
+3:98>	6:106>X			5:101<
+7:84>X				2:96>X	5:91<
+					#84#X
+
+
+Players: 6    Cards: 140
+P0	P1	P2	P3	P4	P5
+			5:134>	1:139<X	8:126>
+D	D	D	D		D
+6:120>X	2:118>	7:111<
+	2:109<				5:104>
+	8:96>	8:88>	2:86>		7:79<
+	8:64>	7:57<	5:74>		2:72>
+	D	D	D		D
+	1:56>	6:50>X	4:46>		4:42>
+	4:38>X		1:37<		8:29<
+			8:21<		4:17<X
+			#17#
+
+
+Players: 6    Cards: 140
+P0	P1	P2	P3	P4	P5
+6:134>X	2:132>	3:129<
+	2:127<			3:116>X	8:119<
+			3:108>		5:111<
+	8:92>	8:84>	2:82>X		8:100>
+	5:75<				2:80>
+	8:57<	6:65<			4:71<
+					2:55<
+	D	D			D
+	5:48>	2:53<
+	5:40>	3:45<
+		8:32>			5:27<
+	4:21<	2:25<			5:16>X
+	3:13<	6:7<
+	7:0#X
+
+
+Players: 6    Cards: 140
+P0	P1	P2	P3	P4	P5
+		5:128>X	4:133<	3:137<X
+2:121<	4:123<		1:127<		8:113<
+	1:104>X		8:105<
+4:97<			3:101<		6:91<
+D			D		D
+7:82>			2:89<X		6:76>
+8:68>					3:65<
+D					D
+4:61<					7:54>
+5:49<					8:41<X
+#41#
+
+
+Players: 6    Cards: 140
+P0	P1	P2	P3	P4	P5
+			8:132>X	4:128>
+D	D	D		D	D
+6:120>X	1:119<				2:126>
+	D	D		D	D
+	7:105<X	#102#		3:102>X	7:112>X
+
+
+from this result
+1) format is correct
+2) people can be kick out by death deck
+3) drink game works fine, people who has been kick out cannot drink
+4) people withdraw last card win
+5) last person win (game 5 last line)
+6) last person can win and receive death deck simultaneously(print out X, first game)
+7) people can withdraw last card(win) and receive death deck simultaneously(print out X, third game)
+
+
+
+

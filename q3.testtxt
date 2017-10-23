@@ -1,0 +1,19 @@
+q2 test file
+
+first : unvalid input
+
+./cardgame 5 2 100 0(seed unvalid)
+./cardgame 5 2 0 100(card unvalid)
+./cardgame 5 1 100 100(player unvalid)
+./cardgame -1 1 100 100(game unvalid)
+all print out
+Usage: ./cardgame [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+
+second: zero game
+./cardgame 0
+ finished without any warning
+
+third: format
+./cardgame 5 6 140 9
+
+

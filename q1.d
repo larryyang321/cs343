@@ -10,4 +10,4 @@ q1.o: q1.cc /usr/local/u++-7.0.0/inc/uC++.h \
  /usr/local/u++-7.0.0/inc/uPIHeap.h /usr/local/u++-7.0.0/inc/uHeap.h \
  /usr/local/u++-7.0.0/inc/uC++.h /usr/local/u++-7.0.0/inc/uBaseSelector.h \
  /usr/local/u++-7.0.0/inc/uLocalDebugger.h \
- /usr/local/u++-7.0.0/inc/fstream test.cc
+ /usr/local/u++-7.0.0/inc/fstream q1binsertsort.h

@@ -254,18 +254,27 @@ void usage( char *argv[] ) {
 void uMain::main(){
 	int game = 5; //default
 	int seed = getpid();
-	unsigned int card =0;//if no card value is assigned, random between 10 200
-	unsigned int player =0;//no player value is assigned, random between 2 10
+	unsigned int cards =0;//if no card value is assigned, random between 10 200
+	unsigned int players =0;//no player value is assigned, random between 2 10
 	switch(argc){
+		
 		case 5:
 			seed = stoi(argv[4]);
 			if(seed <= 0)usage(argv);
 		case 4:
-			card = stoi(argv[3]);
-                        if(card <= 0)usage(argv);
+			try{
+			cards = stoi(argv[3]);}
+			catch(invalid_argument& e){
+				cards = 0;
+			}
+                        //if(card <= 0)usage(argv);
 		case 3:
-			player = stoi(argv[2]);
-			if(player < 2)usage(argv);
+			try{
+			players = stoi(argv[2]);}
+			catch(invalid_argument& e){
+				players = 0;
+			}
+			//if(player < 2)usage(argv);
 		case 2:
 			game = stoi(argv[1]);
 			if(game<0)usage(argv);
@@ -279,9 +288,12 @@ void uMain::main(){
 	//init
 	int gamenumber = 0;
 	while(gamenumber < game){
-	if(card == 0)card = (*prng)(10,200);
+	unsigned int player = players;
+	unsigned int card = cards;
+//	if(cards == 0)card = (*prng)(10,200);
 	
 	if(player == 0)player = (*prng)(2,10);
+if(cards == 0)card = (*prng)(10,200);
 	Player::players(player);
 	int first = (*prng)(0,player-1);
 	

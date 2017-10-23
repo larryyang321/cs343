@@ -4,8 +4,8 @@
 #include <sstream>
 using namespace std;					// direct access to std
 #include <cstdlib>
-#include "test.cc"
-
+//#include "test.cc"
+#include "q1binsertsort.h"
 
 
 template<typename T>
@@ -157,7 +157,9 @@ void uMain::main() {
             break;
         }
 	if(number == 0){
-		*outfile << "blank line from list of length 0 (not actually printed)";
+//		*outfile << "blank line from list of length 0 (not actually printed)";
+
+//		*outfile<<endl;
 	}
 
 	TYPE value;
@@ -179,7 +181,9 @@ void uMain::main() {
 	start.sort(SENTINEL);
 	i = 0;
 	 if(number == 0){
-                *outfile << "blank line from list of length 0 (not actually printed)";
+
+//		*outfile <<endl;
+//                *outfile << "blank line from list of length 0 (not actually printed)";
         }
 	while(i < number){
 		TYPE v = start.retrieve();
